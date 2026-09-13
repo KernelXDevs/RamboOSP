@@ -1,185 +1,64 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RamboPage</title>
-    <style>
-        /* --- PROSTY I ŁADNY CSS --- */
-        
-        /* Zmienne kolorów - ułatwiają zmianę motywu */
-        :root {
-            --bg-color: #f4f4f9;
-            --text-color: #333333;
-            --card-bg: #ffffff;
-            --accent-color: #ff6b6b; /* Ładny, ciepły akcent */
-            --link-color: #4facfe;
-        }
+ <!DOCTYPE html>
 
-        /* Automatyczny tryb ciemny (jeśli użytkownik ma go włączonego w systemie) */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1a1b26;
-                --text-color: #a9b1d6;
-                --card-bg: #24283b;
-                --accent-color: #f7768e;
-                --link-color: #7aa2f7;
-            }
-        }
+<html>
 
-        /* Główne ustawienia strony */
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center; /* Wyśrodkowanie zawartości */
-        }
+    <head>
 
-        /* Główny kontener (karta) */
-        .container {
-            max-width: 800px;
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px; /* Zaokrąglone rogi */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Delikatny cień */
-        }
+        <title>RamboPage</title>
 
-        /* Nagłówek */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        <img src="Rambo.png" alt="Rambo Bambo uciekl!" height="100" width="100"
 
-        .logo {
-            border-radius: 50%; /* Okrągły obrazek kota */
-            border: 3px solid var(--accent-color);
-            margin-bottom: 15px;
-            object-fit: cover;
-        }
+            </head>
 
-        h1 {
-            color: var(--accent-color);
-            margin: 0 0 10px 0;
-        }
+    <body>
 
-        h2 {
-            font-weight: 400;
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin: 0;
-        }
+        <h1>Oficjalna strona RamboOS</h1>
 
-        /* Linia oddzielająca */
-        hr {
-            border: 0;
-            height: 1px;
-            background-color: var(--text-color);
-            opacity: 0.1;
-            margin: 30px 0;
-        }
+        <h2>RamboOS - System z pasją po moim kotku🐈‍⬛</h2>
 
-        /* Tekst opisu */
-        .description p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .description ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-
-        .description li {
-            margin-bottom: 8px;
-        }
-
-        /* Sekcja audio */
-        .audio-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background-color: var(--bg-color);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .audio-section h3 {
-            margin: 0;
-            color: var(--accent-color);
-        }
-
-        /* Linki */
-        .links-section h4 {
-            margin: 15px 0 5px 0;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: var(--accent-color);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Nagłówek strony -->
-        <header>
-            <img src="Rambo.png" alt="Rambo Bambo uciekł!" height="120" width="120" class="logo">
-            <h1>Oficjalna strona RamboOS</h1>
-            <h2>RamboOS - System z pasją po moim kotku 🐈‍⬛</h2>
-        </header>
-        
-        <hr>
-        
-        <!-- Opis systemu -->
-        <div class="description">
-            <p><strong>RamboOS — description</strong></p>
-            <p>RamboOS is a minimal x86 operating system built entirely from scratch — no Linux kernel, no GRUB, no libc. Every byte that runs before you see the <code>rambo></code> prompt was written specifically for this project: a hand-written stage-1 bootloader, a protected-mode kernel, its own disk drivers, and its own filesystem. It's named after Rambo, a much-loved cat.</p>
-            
-            <p><strong>What it actually does:</strong></p>
-            <ul>
-                <li>Boots via a 512-byte hand-written bootloader (real mode → protected mode), with a proper MBR partition table so it boots correctly from a real USB stick on real hardware, not just in an emulator.</li>
-                <li>VGA text-mode and 320×200 graphics, straight to hardware — no BIOS calls after boot.</li>
-                <li>PS/2 keyboard driver, PIT-driven timer with a real interrupt-based tick counter.</li>
-                <li>Every CPU exception (divide error, page fault, general protection fault, etc.) is caught by a real handler and turned into a red kernel-panic screen with a full register dump — not a silent hang.</li>
-                <li>Its own flat filesystem on disk (superblock, file table, free-list allocator) — files, your name, and the machine's hostname all survive a reboot.</li>
-                <li>Two disk drivers: legacy ATA/IDE for older hardware, and a real AHCI driver (with its own PCI bus scanner) for modern SATA controllers that don't expose the old ports at all — so installing actually works on current hardware, not just hardware from 15 years ago.</li>
-                <li>A dialog-box installer in the style of Debian's own text-mode installer — arrow-key menus, Yes/No confirmations that default to "No" for anything destructive, a real progress gauge.</li>
-                <li>First boot asks for a hostname and a name, Debian-installer style.</li>
-                <li>A small interactive shell (edit, ls, cat, rm, df, sysfetch, whoami, panic, reboot) plus <i>peck</i>, a little snake-style game.</li>
-                <li>A pigeon as the boot-menu mascot ("Coo.").</li>
-            </ul>
-
-            <p>It's honest about its own limits: no multitasking, no paging, no user mode yet — those are next on the list. It's a project about how much you can build with nothing but a keyboard and the Intel manual, not a production OS.</p>
-        </div>
+        <h1></h1>
 
         <hr>
 
-        <!-- Dźwięk -->
-        <div class="audio-section">
-            <h3>Meow:</h3>
-            <audio src="Meow.mp3" controls></audio>
-        </div>
+        <h3>RamboOS "Semper Felix" 🐾
 
-        <!-- Linki -->
-        <div class="links-section">
-            <h4>- Źródło do pobrania:</h4>
-            <a href="https://drive.google.com/file/d/1puDLOMjj-Uxl8WOqQ5YgPoyl8R5baJ7I/view?usp=drive_link" target="_blank" title="Strona google drive z plikiem IMG">Pobierz obraz IMG z Google Drive</a>
-            
-            <h4>- Link do Discorda:</h4>
-            <a href="https://discord.gg/WMXEtXmern" target="_blank" title="Discord">Dołącz do serwera Discord</a>
-        </div>
-    </div>
+Prawdziwy, bootowalny system operacyjny x86, napisany od zera w asemblerze — w hołdzie dla Rambo, twardziela na cztery łapy, który już zmienił wartę.
+
+Żadnego Linuksa pod maską. Żadnego pożyczonego kernela. Tylko własnoręcznie napisany bootloader i kernel, które budzą się do życia od razu z imieniem Rambo na ekranie powitalnym — zielony tytuł, cyjanowy kot, i napis "gone, but always on duty".
+
+System wita Cię shellem RamboOS>, a w nim ponad 30 komend do zabawy. Flagowa to rambofetch — kolorowy, neofetchowy raport z Twojego sprzętu (prawdziwy producent CPU, ilość RAM-u, geometria dysku, czas działania), otoczony ramką i kocim pyskiem.
+
+Ale to nie tylko cyferki. System umie:
+
+zagrać z Tobą w zgadywankę liczb albo refleksową misję zwiadowczą z prawdziwym pomiarem czasu reakcji,
+policzyć Ci coś w kalkulatorze (dodawanie, mnożenie, ujemne liczby, wszystko na serio),
+zapytać Wyrocznię Rambo o rozkazy na dziś,
+zagrać prawdziwą melodyjkę na głośniku PC z tańczącym kotem ASCII w rytm,
+zapamiętać Twoje notatki i historię komend na czas sesji,
+a jeśli umiesz pisać w asemblerze — uruchomić Twój własny program, załadowany prosto z dysku i wykonany jak prawdziwy kod, bez żadnej piaskownicy.
+
+Całość mieści się na dyskietce 1.44MB, odpalisz ją w QEMU, VirtualBoxie, albo na prawdziwym sprzęcie z pendrive'a.
+
+To mały, absurdalny, ale w 100% działający system. Rambo już nie pilnuje domu — teraz pilnuje komputera. Semper Felix. 🐱</h3>
+<br>
+
+<h3>Meow: </h3>
+
+<audio src="Meow.mp3" controls></audio>
+
+
+<h4>- źródło do pobrania:</h4>
+
+<a href="https://drive.google.com/file/d/1puDLOMjj-Uxl8WOqQ5YgPoyl8R5baJ7I/view?usp=drive_link" target="_blank"
+
+title="Strona google drive z plikiem IMG">Google Drive</a>
+
+<h4>link do discord: </h4>
+
+<a href="https://discord.gg/WMXEtXmern" target="_blank"
+
+title="Discord">Discord</a>
+
 </body>
-</html>
+
+</html> 
